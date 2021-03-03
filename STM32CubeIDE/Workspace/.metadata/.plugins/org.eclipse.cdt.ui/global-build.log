@@ -1,0 +1,23 @@
+21:50:17 **** Incremental Build of configuration Debug for project Basic Timer - Periodic Signal ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0 -std=gnu11 -g3 -DSTM32F070xB -DUSE_HAL_DRIVER -DDEBUG -c -I../Drivers/STM32F0xx_HAL_Driver/Inc -I../Drivers/CMSIS/Include -I"D:/temp/STM32TrainingExamplesRegisterLevel/STM32CubeIDE/User Drivers/Inc" -I../Core/Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F0xx/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:190:13: warning: 'MX_GPIO_Init' defined but not used [-Wunused-function]
+ static void MX_GPIO_Init(void)
+             ^~~~~~~~~~~~
+../Core/Src/main.c:155:13: warning: 'MX_USART1_UART_Init' defined but not used [-Wunused-function]
+ static void MX_USART1_UART_Init(void)
+             ^~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "Basic Timer - Periodic Signal.elf" @"objects.list"   -mcpu=cortex-m0 -T"D:\temp\STM32TrainingExamplesRegisterLevel\STM32CubeIDE\Project - 12 - Basic Timer - Periodic Signal\STM32F070RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Basic Timer - Periodic Signal.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Basic Timer - Periodic Signal.elf
+ 
+arm-none-eabi-objdump -h -S  Basic\ Timer\ -\ Periodic\ Signal.elf  > "Basic Timer - Periodic Signal.list"
+arm-none-eabi-objcopy  -O binary  Basic\ Timer\ -\ Periodic\ Signal.elf  "Basic Timer - Periodic Signal.bin"
+arm-none-eabi-size   Basic\ Timer\ -\ Periodic\ Signal.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5200	     20	   3764	   8984	   2318	Basic Timer - Periodic Signal.elf
+Finished building: default.size.stdout
+ 
+Finished building: Basic Timer - Periodic Signal.bin
+ 
+Finished building: Basic Timer - Periodic Signal.list
+ 
