@@ -120,7 +120,7 @@ void USART2_IRQHandler(void) {
 
 	/* UART in mode Receiver */
 	if (((isrflags & USART_ISR_RXNE) != RESET) && ((control_reg1 & USART_CR1_RXNEIE) != RESET)) {
-		data_buffer[cnt++] = (uint16_t) USART2->RDR;
+		data_buffer[cnt++] = (uint8_t) USART2->RDR;
 		if (cnt == 6) {
 			cnt = 0;
 			data_flag = 1;

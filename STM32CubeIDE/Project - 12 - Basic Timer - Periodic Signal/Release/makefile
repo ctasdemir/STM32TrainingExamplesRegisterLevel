@@ -54,8 +54,8 @@ all: main-build
 main-build: Basic\ Timer\ -\ Periodic\ Signal.elf secondary-outputs
 
 # Tool invocations
-Basic\ Timer\ -\ Periodic\ Signal.elf: $(OBJS) $(USER_OBJS) D:\workspace\Basic\ Timer\ -\ Periodic\ Signal\STM32F070RBTX_FLASH.ld
-	arm-none-eabi-gcc -o "Basic Timer - Periodic Signal.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0 -T"D:\workspace\Basic Timer - Periodic Signal\STM32F070RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Basic Timer - Periodic Signal.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Basic\ Timer\ -\ Periodic\ Signal.elf: $(OBJS) $(USER_OBJS) D:\temp\STM32TrainingExamplesRegisterLevel\STM32CubeIDE\Project\ -\ 12\ -\ Basic\ Timer\ -\ Periodic\ Signal\STM32F070RBTX_FLASH.ld
+	arm-none-eabi-gcc -o "Basic Timer - Periodic Signal.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0 -T"D:\temp\STM32TrainingExamplesRegisterLevel\STM32CubeIDE\Project - 12 - Basic Timer - Periodic Signal\STM32F070RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Basic Timer - Periodic Signal.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

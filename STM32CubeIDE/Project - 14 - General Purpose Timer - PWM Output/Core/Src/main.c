@@ -28,7 +28,7 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+static void pwm_sweep(void);
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -101,24 +101,32 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  pwm_set_duty_cycle(1,1);
-	  pwm_set_duty_cycle(10,2);
-	  HAL_Delay(200);
-
-	  pwm_set_duty_cycle(5,1);
-	  pwm_set_duty_cycle(6,2);
-	  HAL_Delay(200);
-
-	  pwm_set_duty_cycle(7,1);
-	  pwm_set_duty_cycle(3,2);
-	  HAL_Delay(200);
-
-	  pwm_set_duty_cycle(10,1);
-	  pwm_set_duty_cycle(2,2);
-	  HAL_Delay(200);
+	  pwm_sweep();
 
   }
   /* USER CODE END 3 */
+}
+
+
+static void pwm_sweep(void)
+{
+	int32_t sweep = 0 ;
+	for(sweep = 0; sweep < 100; sweep++)
+	{
+		pwm_set_duty_cycle(sweep,1);
+		pwm_set_duty_cycle(100 - sweep,2);
+
+		HAL_Delay(5);
+	}
+
+	for(sweep = 100; sweep > 0; sweep--)
+	{
+		pwm_set_duty_cycle(sweep,1);
+		pwm_set_duty_cycle(100 - sweep,2);
+
+		HAL_Delay(5);
+	}
+
 }
 
 /**

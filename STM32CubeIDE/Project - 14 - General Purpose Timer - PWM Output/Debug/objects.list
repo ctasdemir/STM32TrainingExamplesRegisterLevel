@@ -23,6 +23,7 @@
 "Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart.o"
 "Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.o"
 "Drivers/User Drivers/Src/button_driver.o"
+"Drivers/User Drivers/Src/button_exti_driver.o"
 "Drivers/User Drivers/Src/led_driver.o"
 "Drivers/User Drivers/Src/pwm_driver.o"
 "Drivers/User Drivers/Src/servo_driver.o"

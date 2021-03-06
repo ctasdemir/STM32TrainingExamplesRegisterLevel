@@ -25,10 +25,10 @@ void pwm_init(void)
 	GPIO_InitStruct.Alternate = GPIO_AF0_TIM3;
 	HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-	TIM3->PSC = 47; // Timer clock = 48 mhz / 48 = 1 MHz
-	TIM3->ARR = 10;  // period 10 us ==> 100 KHz
-	TIM3->CCR1 = 1;
-	TIM3->CCR2 = 2;
+	TIM3->PSC = 23; // Timer clock = 48 mhz / 24 = 2Mhz
+	TIM3->ARR = 99;  // Period ==> (2 Mhz / 100) = 20 Khz
+	TIM3->CCR1 = 0;
+	TIM3->CCR2 = 0;
 
 	// CH-1 PWM MODE 
 	TIM3->CCMR1 |= TIM_CCMR1_OC1M_2;
@@ -66,12 +66,11 @@ void pwm_set_duty_cycle(uint32_t duty, uint32_t channel)
 	switch(channel)
 	{
 		case 1:
-			TIM3->CCR1 = duty;  
-	
+			TIM3->CCR1 = duty;
 			break;
 		
 		case 2:
-			TIM3->CCR2 = duty; 		
+			TIM3->CCR2 = duty;
 			break;
 	}
 }

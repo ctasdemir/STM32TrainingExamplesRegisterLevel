@@ -19,8 +19,8 @@
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
+#include <button_exti_driver.h>
 #include "main.h"
-#include "button_driver.h"
 #include "led_driver.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -88,7 +88,7 @@ int main(void)
 
 
   /* USER CODE BEGIN 2 */
-   button_init();
+   button_exti_init();
    user_led_init();
   /* USER CODE END 2 */
 

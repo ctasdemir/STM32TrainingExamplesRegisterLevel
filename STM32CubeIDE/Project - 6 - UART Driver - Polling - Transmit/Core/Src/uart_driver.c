@@ -5,10 +5,6 @@ UART_HandleTypeDef UartHandle;
 
 /*  
   UART_Init()
-  UART'i proje specifikasyonunda belirtilen hiz ve
-  ayarlarla baslatir. 
-  RX kesmelerini aktif hale getirir.
-
 */
 void UART_Init()
 {

@@ -115,14 +115,14 @@ static void servo_sweep(void)
 {
 	static int32_t sweep = 0 ;
 
-	for(sweep = 0; sweep < 2000; sweep++)
+	for(sweep = 1; sweep < 2000; sweep++)
 	{
 		servo_set_duty_cycle(sweep,1);
 		servo_set_duty_cycle(sweep,2);
 		HAL_Delay(1);
 	}
 
-	for(sweep = 2000; sweep >= 0; sweep--)
+	for(sweep = 2000; sweep > 1; sweep--)
 	{
 		servo_set_duty_cycle(sweep,1);
 		servo_set_duty_cycle(sweep,2);

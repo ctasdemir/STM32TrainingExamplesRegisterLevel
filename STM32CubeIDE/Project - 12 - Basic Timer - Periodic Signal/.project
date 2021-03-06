@@ -31,4 +31,16 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 		<nature>com.st.stm32cube.ide.mcu.MCUCubeIdeServicesRevAev2ProjectNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>Core/Src/led_driver.c</name>
+			<type>1</type>
+			<location>D:/temp/STM32TrainingExamplesRegisterLevel/STM32CubeIDE/User Drivers/Src/led_driver.c</location>
+		</link>
+		<link>
+			<name>Core/Src/timer6_driver.c</name>
+			<type>1</type>
+			<location>D:/temp/STM32TrainingExamplesRegisterLevel/STM32CubeIDE/User Drivers/Src/timer6_driver.c</location>
+		</link>
+	</linkedResources>
 </projectDescription>
