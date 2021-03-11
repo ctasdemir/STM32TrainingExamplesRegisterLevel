@@ -7,21 +7,13 @@ static void oc_led_init(void);
 
 void timer14_init(void)
 {
-	//GPIO_InitTypeDef GPIO_InitStruct;
 	oc_led_init();
+
 	__HAL_RCC_TIM14_CLK_ENABLE();
 
-	// GPIOA-7 Pin Timer14 - Output Compare Output
-	/*
-	GPIO_InitStruct.Pin = GPIO_PIN_7;
-	GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-	GPIO_InitStruct.Pull = GPIO_NOPULL;
-	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
-	GPIO_InitStruct.Alternate = GPIO_AF4_TIM14;
-
-	HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-    */
 	// Timer clock = 48 mhz / 48000 = 1000 Hz (1 ms period)
+	//TIM14->PSC = 48000 - 1;
+
 	TIM14->PSC = 48000 - 1;
 
 	// OUTPUT COMPARE MODE
@@ -35,7 +27,10 @@ void timer14_init(void)
 
 	// Enable OC1REF OUTPUT
 	TIM14->CCER |= TIM_CCER_CC1E;
-	
+
+	// Output Polarity: Active High
+	TIM14->CCER &= ~TIM_CCER_CC1P;
+
 	// Set period to 100 ms
 	TIM14->ARR = 99;
 	TIM14->CCR1 = 99;
@@ -53,8 +48,8 @@ void timer14_disable(void)
 
 void timer14_capture_set_period(uint32_t ms)
 {
-	TIM14->ARR = ms-1;
-	TIM14->CCR1 = ms-1;
+	TIM14->CCR1 = ms - 1;
+	TIM14->ARR = ms - 1;
 }
 
 void oc_led_init()
@@ -80,14 +75,14 @@ void oc_led_init()
 	GPIOA->OSPEEDR |=  (1 << 14); // Bit 14: 1
 	GPIOA->OSPEEDR &= ~(1 << 15); // Bit 15: 0
 
-
 	// No pull-up, no pull-down
 	// Bit 14 : 0
 	// Bit 15 :	0
 	GPIOA->PUPDR   &= ~(1 << 14);
 	GPIOA->PUPDR   &= ~(1 << 15);
 
-	// Alternate Function: AFRL_LOW
+	// Alternate Function: GPIOA - 7 = AF4
+	// AFRL_LOW
 	// Bit 28 : 0
 	// Bit 29 :	0
 	// Bit 30 : 1
