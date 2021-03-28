@@ -101,11 +101,11 @@ int main(void)
   {
     /* USER CODE END WHILE */
 	  timer14_capture_set_period(100);
-	  HAL_Delay(3000);
+	  HAL_Delay(5000);
 	  timer14_capture_set_period(500);
-	  HAL_Delay(3000);
+	  HAL_Delay(5000);
 	  timer14_capture_set_period(1000);
-	  HAL_Delay(3000);
+	  HAL_Delay(5000);
 
     /* USER CODE BEGIN 3 */
   }

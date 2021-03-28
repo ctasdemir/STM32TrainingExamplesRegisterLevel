@@ -98,6 +98,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  servo_enable();
   while (1)
   {
     /* USER CODE END WHILE */

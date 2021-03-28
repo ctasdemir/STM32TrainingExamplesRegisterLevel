@@ -48,8 +48,10 @@ void timer14_disable(void)
 
 void timer14_capture_set_period(uint32_t ms)
 {
+	timer14_disable();
 	TIM14->CCR1 = ms - 1;
 	TIM14->ARR = ms - 1;
+	timer14_enable();
 }
 
 void oc_led_init()
