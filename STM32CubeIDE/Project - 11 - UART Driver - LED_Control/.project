@@ -34,17 +34,17 @@
 		<link>
 			<name>Core/Src/button_driver.c</name>
 			<type>1</type>
-			<location>D:/temp/STM32TrainingExamplesRegisterLevel/STM32CubeIDE/User Drivers/Src/button_driver.c</location>
+			<locationURI>$%7BPARENT-1-PROJECT_LOC%7D/User%20Drivers/Src/button_driver.c</locationURI>
 		</link>
 		<link>
 			<name>Core/Src/led_driver.c</name>
 			<type>1</type>
-			<location>D:/temp/STM32TrainingExamplesRegisterLevel/STM32CubeIDE/User Drivers/Src/led_driver.c</location>
+			<locationURI>$%7BPARENT-1-PROJECT_LOC%7D/User%20Drivers/Src/led_driver.c</locationURI>
 		</link>
 		<link>
 			<name>Core/Src/uart_driver.c</name>
 			<type>1</type>
-			<location>D:/temp/STM32TrainingExamplesRegisterLevel/STM32CubeIDE/User Drivers/Src/uart_driver.c</location>
+			<locationURI>$%7BPARENT-1-PROJECT_LOC%7D/User%20Drivers/Src/uart_driver.c</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

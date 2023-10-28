@@ -100,7 +100,7 @@ int main(void)
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
-		if (data_flag) {
+		if (data_flag == 1) {
 			data_flag = 0;
 			data_buffer[6] = '\0';
 
