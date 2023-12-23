@@ -34,7 +34,7 @@
 		<link>
 			<name>Core/Src/led_driver.c</name>
 			<type>1</type>
-			<location>D:/temp/STM32TrainingExamplesRegisterLevel/STM32CubeIDE/User Drivers/Src/led_driver.c</location>
+			<locationURI>PARENT-1-PROJECT_LOC/User%20drivers/src/led_driver.c</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>
