@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2016 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2016 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                        opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -46,43 +45,45 @@ extern "C" {
   */
 typedef struct
 {
-  uint32_t BaudRate;                  /*!< This member configures the UART communication baud rate.
-                                           The baud rate register is computed using the following formula:
-                                           - If oversampling is 16 or in LIN mode,
-                                              Baud Rate Register = ((uart_ker_ck) / ((huart->Init.BaudRate)))
-                                           - If oversampling is 8,
-                                              Baud Rate Register[15:4] = ((2 * uart_ker_ck) / ((huart->Init.BaudRate)))[15:4]
-                                              Baud Rate Register[3] =  0
-                                              Baud Rate Register[2:0] =  (((2 * uart_ker_ck) / ((huart->Init.BaudRate)))[3:0]) >> 1
-                                           where uart_ker_ck is the UART input clock */
+  uint32_t BaudRate;                /*!< This member configures the UART communication baud rate.
+                                         The baud rate register is computed using the following formula:
+                                         - If oversampling is 16 or in LIN mode,
+                                            Baud Rate Register = ((uart_ker_ck) / ((huart->Init.BaudRate)))
+                                         - If oversampling is 8,
+                                            Baud Rate Register[15:4] = ((2 * uart_ker_ck) /
+                                                                        ((huart->Init.BaudRate)))[15:4]
+                                            Baud Rate Register[3] =  0
+                                            Baud Rate Register[2:0] =  (((2 * uart_ker_ck) /
+                                                                        ((huart->Init.BaudRate)))[3:0]) >> 1
+                                         where uart_ker_ck is the UART input clock */
 
-  uint32_t WordLength;                /*!< Specifies the number of data bits transmitted or received in a frame.
-                                           This parameter can be a value of @ref UARTEx_Word_Length. */
+  uint32_t WordLength;              /*!< Specifies the number of data bits transmitted or received in a frame.
+                                         This parameter can be a value of @ref UARTEx_Word_Length. */
 
-  uint32_t StopBits;                  /*!< Specifies the number of stop bits transmitted.
-                                           This parameter can be a value of @ref UART_Stop_Bits. */
+  uint32_t StopBits;                /*!< Specifies the number of stop bits transmitted.
+                                         This parameter can be a value of @ref UART_Stop_Bits. */
 
-  uint32_t Parity;                    /*!< Specifies the parity mode.
-                                           This parameter can be a value of @ref UART_Parity
-                                           @note When parity is enabled, the computed parity is inserted
-                                                 at the MSB position of the transmitted data (9th bit when
-                                                 the word length is set to 9 data bits; 8th bit when the
-                                                 word length is set to 8 data bits). */
+  uint32_t Parity;                  /*!< Specifies the parity mode.
+                                         This parameter can be a value of @ref UART_Parity
+                                         @note When parity is enabled, the computed parity is inserted
+                                               at the MSB position of the transmitted data (9th bit when
+                                               the word length is set to 9 data bits; 8th bit when the
+                                               word length is set to 8 data bits). */
 
-  uint32_t Mode;                      /*!< Specifies whether the Receive or Transmit mode is enabled or disabled.
-                                           This parameter can be a value of @ref UART_Mode. */
+  uint32_t Mode;                    /*!< Specifies whether the Receive or Transmit mode is enabled or disabled.
+                                         This parameter can be a value of @ref UART_Mode. */
 
-  uint32_t HwFlowCtl;                 /*!< Specifies whether the hardware flow control mode is enabled
-                                           or disabled.
-                                           This parameter can be a value of @ref UART_Hardware_Flow_Control. */
+  uint32_t HwFlowCtl;               /*!< Specifies whether the hardware flow control mode is enabled
+                                         or disabled.
+                                         This parameter can be a value of @ref UART_Hardware_Flow_Control. */
 
-  uint32_t OverSampling;              /*!< Specifies whether the Over sampling 8 is enabled or disabled,
-                                           to achieve higher speed (up to f_PCLK/8).
-                                           This parameter can be a value of @ref UART_Over_Sampling. */
+  uint32_t OverSampling;            /*!< Specifies whether the Over sampling 8 is enabled or disabled,
+                                         to achieve higher speed (up to f_PCLK/8).
+                                         This parameter can be a value of @ref UART_Over_Sampling. */
 
-  uint32_t OneBitSampling;            /*!< Specifies whether a single sample or three samples' majority vote is selected.
-                                           Selecting the single sample method increases the receiver tolerance to clock
-                                           deviations. This parameter can be a value of @ref UART_OneBit_Sampling. */
+  uint32_t OneBitSampling;          /*!< Specifies whether a single sample or three samples' majority vote is selected.
+                                         Selecting the single sample method increases the receiver tolerance to clock
+                                         deviations. This parameter can be a value of @ref UART_OneBit_Sampling. */
 
 
 } UART_InitTypeDef;
@@ -184,13 +185,24 @@ typedef enum
 /**
   * @brief HAL UART Reception type definition
   * @note  HAL UART Reception type value aims to identify which type of Reception is ongoing.
-  *        It is expected to admit following values :
+  *        This parameter can be a value of @ref UART_Reception_Type_Values :
   *           HAL_UART_RECEPTION_STANDARD         = 0x00U,
   *           HAL_UART_RECEPTION_TOIDLE           = 0x01U,
   *           HAL_UART_RECEPTION_TORTO            = 0x02U,
   *           HAL_UART_RECEPTION_TOCHARMATCH      = 0x03U,
   */
 typedef uint32_t HAL_UART_RxTypeTypeDef;
+
+/**
+  * @brief HAL UART Rx Event type definition
+  * @note  HAL UART Rx Event type value aims to identify which type of Event has occurred
+  *        leading to call of the RxEvent callback.
+  *        This parameter can be a value of @ref UART_RxEvent_Type_Values :
+  *           HAL_UART_RXEVENT_TC                 = 0x00U,
+  *           HAL_UART_RXEVENT_HT                 = 0x01U,
+  *           HAL_UART_RXEVENT_IDLE               = 0x02U,
+  */
+typedef uint32_t HAL_UART_RxEventTypeTypeDef;
 
 /**
   * @brief  UART handle Structure definition
@@ -203,7 +215,7 @@ typedef struct __UART_HandleTypeDef
 
   UART_AdvFeatureInitTypeDef AdvancedInit;           /*!< UART Advanced Features initialization parameters */
 
-  uint8_t                  *pTxBuffPtr;              /*!< Pointer to UART Tx transfer Buffer */
+  const uint8_t            *pTxBuffPtr;              /*!< Pointer to UART Tx transfer Buffer */
 
   uint16_t                 TxXferSize;               /*!< UART Tx Transfer size              */
 
@@ -218,6 +230,8 @@ typedef struct __UART_HandleTypeDef
   uint16_t                 Mask;                     /*!< UART Rx RDR register mask          */
 
   __IO HAL_UART_RxTypeTypeDef ReceptionType;         /*!< Type of ongoing reception          */
+
+  __IO HAL_UART_RxEventTypeTypeDef RxEventType;      /*!< Type of Rx Event                   */
 
   void (*RxISR)(struct __UART_HandleTypeDef *huart); /*!< Function pointer on Rx IRQ handler */
 
@@ -247,7 +261,11 @@ typedef struct __UART_HandleTypeDef
   void (* AbortCpltCallback)(struct __UART_HandleTypeDef *huart);         /*!< UART Abort Complete Callback          */
   void (* AbortTransmitCpltCallback)(struct __UART_HandleTypeDef *huart); /*!< UART Abort Transmit Complete Callback */
   void (* AbortReceiveCpltCallback)(struct __UART_HandleTypeDef *huart);  /*!< UART Abort Receive Complete Callback  */
+#if defined(USART_CR1_UESM)
+#if defined(USART_CR3_WUFIE)
   void (* WakeupCallback)(struct __UART_HandleTypeDef *huart);            /*!< UART Wakeup Callback                  */
+#endif /* USART_CR3_WUFIE */
+#endif /* USART_CR1_UESM */
   void (* RxEventCallback)(struct __UART_HandleTypeDef *huart, uint16_t Pos); /*!< UART Reception Event Callback     */
 
   void (* MspInitCallback)(struct __UART_HandleTypeDef *huart);           /*!< UART Msp Init callback                */
@@ -280,8 +298,9 @@ typedef enum
 /**
   * @brief  HAL UART Callback pointer definition
   */
-typedef  void (*pUART_CallbackTypeDef)(UART_HandleTypeDef *huart);  /*!< pointer to an UART callback function */
-typedef  void (*pUART_RxEventCallbackTypeDef)(struct __UART_HandleTypeDef *huart, uint16_t Pos);   /*!< pointer to a UART Rx Event specific callback function */
+typedef  void (*pUART_CallbackTypeDef)(UART_HandleTypeDef *huart); /*!< pointer to an UART callback function */
+typedef  void (*pUART_RxEventCallbackTypeDef)
+(struct __UART_HandleTypeDef *huart, uint16_t Pos); /*!< pointer to a UART Rx Event specific callback function */
 
 #endif /* USE_HAL_UART_REGISTER_CALLBACKS */
 
@@ -490,7 +509,9 @@ typedef  void (*pUART_RxEventCallbackTypeDef)(struct __UART_HandleTypeDef *huart
 #define UART_SENDBREAK_REQUEST              USART_RQR_SBKRQ        /*!< Send Break Request          */
 #define UART_MUTE_MODE_REQUEST              USART_RQR_MMRQ         /*!< Mute Mode Request           */
 #define UART_RXDATA_FLUSH_REQUEST           USART_RQR_RXFRQ        /*!< Receive Data flush Request  */
+#if defined(USART_RQR_TXFRQ)
 #define UART_TXDATA_FLUSH_REQUEST           USART_RQR_TXFRQ        /*!< Transmit data flush Request */
+#endif /* USART_RQR_TXFRQ */
 /**
   * @}
   */
@@ -617,10 +638,16 @@ typedef  void (*pUART_RxEventCallbackTypeDef)(struct __UART_HandleTypeDef *huart
 /** @defgroup UART_WakeUp_from_Stop_Selection   UART WakeUp From Stop Selection
   * @{
   */
+#if defined(USART_CR3_WUS)
 #define UART_WAKEUP_ON_ADDRESS              0x00000000U             /*!< UART wake-up on address                     */
 #define UART_WAKEUP_ON_STARTBIT             USART_CR3_WUS_1         /*!< UART wake-up on start bit                   */
 #define UART_WAKEUP_ON_READDATA_NONEMPTY    USART_CR3_WUS           /*!< UART wake-up on receive data register
                                                                          not empty or RXFIFO is not empty            */
+#else
+#define UART_WAKEUP_ON_ADDRESS              0x00000000U             /*!< UART wake-up on address                     */
+#define UART_WAKEUP_ON_READDATA_NONEMPTY    0x00000001U             /*!< UART wake-up on receive data register
+                                                                         not empty or RXFIFO is not empty            */
+#endif /* USART_CR3_WUS */
 /**
   * @}
   */
@@ -677,7 +704,9 @@ typedef  void (*pUART_RxEventCallbackTypeDef)(struct __UART_HandleTypeDef *huart
 #define UART_FLAG_REACK                     USART_ISR_REACK         /*!< UART receive enable acknowledge flag      */
 #define UART_FLAG_TEACK                     USART_ISR_TEACK         /*!< UART transmit enable acknowledge flag     */
 #if defined(USART_CR1_UESM)
+#if defined(USART_CR3_WUFIE)
 #define UART_FLAG_WUF                       USART_ISR_WUF           /*!< UART wake-up from stop mode flag          */
+#endif /* USART_CR3_WUFIE */
 #endif /* USART_CR1_UESM */
 #define UART_FLAG_RWU                       USART_ISR_RWU           /*!< UART receiver wake-up from mute mode flag */
 #define UART_FLAG_SBKF                      USART_ISR_SBKF          /*!< UART send break flag                      */
@@ -728,7 +757,9 @@ typedef  void (*pUART_RxEventCallbackTypeDef)(struct __UART_HandleTypeDef *huart
 #define UART_IT_CTS                         0x096AU              /*!< UART CTS interruption                          */
 #define UART_IT_CM                          0x112EU              /*!< UART character match interruption              */
 #if defined(USART_CR1_UESM)
+#if defined(USART_CR3_WUFIE)
 #define UART_IT_WUF                         0x1476U              /*!< UART wake-up from stop mode interruption       */
+#endif /* USART_CR3_WUFIE */
 #endif /* USART_CR1_UESM */
 #define UART_IT_RTO                         0x0B3AU              /*!< UART receiver timeout interruption             */
 
@@ -754,20 +785,32 @@ typedef  void (*pUART_RxEventCallbackTypeDef)(struct __UART_HandleTypeDef *huart
 #define UART_CLEAR_CTSF                      USART_ICR_CTSCF           /*!< CTS Interrupt Clear Flag          */
 #define UART_CLEAR_CMF                       USART_ICR_CMCF            /*!< Character Match Clear Flag        */
 #if defined(USART_CR1_UESM)
+#if defined(USART_CR3_WUFIE)
 #define UART_CLEAR_WUF                       USART_ICR_WUCF            /*!< Wake Up from stop mode Clear Flag */
+#endif /* USART_CR3_WUFIE */
 #endif /* USART_CR1_UESM */
 #define UART_CLEAR_RTOF                      USART_ICR_RTOCF           /*!< UART receiver timeout clear flag  */
 /**
   * @}
   */
 
-/** @defgroup UART_RECEPTION_TYPE_Values  UART Reception type values
+/** @defgroup UART_Reception_Type_Values  UART Reception type values
   * @{
   */
 #define HAL_UART_RECEPTION_STANDARD          (0x00000000U)             /*!< Standard reception                       */
 #define HAL_UART_RECEPTION_TOIDLE            (0x00000001U)             /*!< Reception till completion or IDLE event  */
 #define HAL_UART_RECEPTION_TORTO             (0x00000002U)             /*!< Reception till completion or RTO event   */
 #define HAL_UART_RECEPTION_TOCHARMATCH       (0x00000003U)             /*!< Reception till completion or CM event    */
+/**
+  * @}
+  */
+
+/** @defgroup UART_RxEvent_Type_Values  UART RxEvent type values
+  * @{
+  */
+#define HAL_UART_RXEVENT_TC                  (0x00000000U)             /*!< RxEvent linked to Transfer Complete event */
+#define HAL_UART_RXEVENT_HT                  (0x00000001U)             /*!< RxEvent linked to Half Transfer event     */
+#define HAL_UART_RXEVENT_IDLE                (0x00000002U)             /*!< RxEvent linked to IDLE event              */
 /**
   * @}
   */
@@ -803,11 +846,18 @@ typedef  void (*pUART_RxEventCallbackTypeDef)(struct __UART_HandleTypeDef *huart
   * @param  __HANDLE__ specifies the UART Handle.
   * @retval None
   */
+#if defined(USART_RQR_TXFRQ)
 #define __HAL_UART_FLUSH_DRREGISTER(__HANDLE__)  \
   do{                \
     SET_BIT((__HANDLE__)->Instance->RQR, UART_RXDATA_FLUSH_REQUEST); \
     SET_BIT((__HANDLE__)->Instance->RQR, UART_TXDATA_FLUSH_REQUEST); \
   }  while(0U)
+#else
+#define __HAL_UART_FLUSH_DRREGISTER(__HANDLE__)  \
+  do{                \
+    SET_BIT((__HANDLE__)->Instance->RQR, UART_RXDATA_FLUSH_REQUEST); \
+  }  while(0U)
+#endif /* USART_RQR_TXFRQ */
 
 /** @brief  Clear the specified UART pending flag.
   * @param  __HANDLE__ specifies the UART Handle.
@@ -824,7 +874,9 @@ typedef  void (*pUART_RxEventCallbackTypeDef)(struct __UART_HandleTypeDef *huart
   *            @arg @ref UART_CLEAR_CTSF     CTS Interrupt Clear Flag
   *            @arg @ref UART_CLEAR_CMF      Character Match Clear Flag
 #if defined(USART_CR1_UESM)
+#if defined(USART_CR3_WUFIE)
   *            @arg @ref UART_CLEAR_WUF      Wake Up from stop mode Clear Flag
+#endif
 #endif
   * @retval None
   */
@@ -867,9 +919,11 @@ typedef  void (*pUART_RxEventCallbackTypeDef)(struct __UART_HandleTypeDef *huart
   *        This parameter can be one of the following values:
   *            @arg @ref UART_FLAG_REACK Receive enable acknowledge flag
   *            @arg @ref UART_FLAG_TEACK Transmit enable acknowledge flag
-  #if defined(USART_CR1_UESM)
+#if defined(USART_CR1_UESM)
+#if defined(USART_CR3_WUFIE)
   *            @arg @ref UART_FLAG_WUF   Wake up from stop mode flag
- #endif
+#endif
+#endif
   *            @arg @ref UART_FLAG_RWU   Receiver wake up flag (if the UART in mute mode)
   *            @arg @ref UART_FLAG_SBKF  Send Break flag
   *            @arg @ref UART_FLAG_CMF   Character match flag
@@ -896,7 +950,9 @@ typedef  void (*pUART_RxEventCallbackTypeDef)(struct __UART_HandleTypeDef *huart
   * @param  __INTERRUPT__ specifies the UART interrupt source to enable.
   *          This parameter can be one of the following values:
 #if defined(USART_CR1_UESM)
+#if defined(USART_CR3_WUFIE)
   *            @arg @ref UART_IT_WUF   Wakeup from stop mode interrupt
+#endif
 #endif
   *            @arg @ref UART_IT_CM    Character match interrupt
   *            @arg @ref UART_IT_CTS   CTS change interrupt
@@ -925,7 +981,9 @@ typedef  void (*pUART_RxEventCallbackTypeDef)(struct __UART_HandleTypeDef *huart
   * @param  __INTERRUPT__ specifies the UART interrupt source to disable.
   *          This parameter can be one of the following values:
 #if defined(USART_CR1_UESM)
+#if defined(USART_CR3_WUFIE)
   *            @arg @ref UART_IT_WUF   Wakeup from stop mode interrupt
+#endif
 #endif
   *            @arg @ref UART_IT_CM    Character match interrupt
   *            @arg @ref UART_IT_CTS   CTS change interrupt
@@ -954,7 +1012,9 @@ typedef  void (*pUART_RxEventCallbackTypeDef)(struct __UART_HandleTypeDef *huart
   * @param  __INTERRUPT__ specifies the UART interrupt to check.
   *          This parameter can be one of the following values:
 #if defined(USART_CR1_UESM)
+#if defined(USART_CR3_WUFIE)
   *            @arg @ref UART_IT_WUF   Wakeup from stop mode interrupt
+#endif
 #endif
   *            @arg @ref UART_IT_CM    Character match interrupt
   *            @arg @ref UART_IT_CTS   CTS change interrupt
@@ -976,7 +1036,9 @@ typedef  void (*pUART_RxEventCallbackTypeDef)(struct __UART_HandleTypeDef *huart
   * @param  __INTERRUPT__ specifies the UART interrupt source to check.
   *          This parameter can be one of the following values:
 #if defined(USART_CR1_UESM)
+#if defined(USART_CR3_WUFIE)
   *            @arg @ref UART_IT_WUF   Wakeup from stop mode interrupt
+#endif
 #endif
   *            @arg @ref UART_IT_CM    Character match interrupt
   *            @arg @ref UART_IT_CTS   CTS change interrupt
@@ -1013,8 +1075,10 @@ typedef  void (*pUART_RxEventCallbackTypeDef)(struct __UART_HandleTypeDef *huart
   *            @arg @ref UART_CLEAR_LBDF   LIN Break Detection Clear Flag
   *            @arg @ref UART_CLEAR_CTSF   CTS Interrupt Clear Flag
   *            @arg @ref UART_CLEAR_CMF    Character Match Clear Flag
-  #if defined(USART_CR1_UESM)
+#if defined(USART_CR1_UESM)
+#if defined(USART_CR3_WUFIE)
   *            @arg @ref UART_CLEAR_WUF    Wake Up from stop mode Clear Flag
+#endif
 #endif
   * @retval None
   */
@@ -1028,7 +1092,9 @@ typedef  void (*pUART_RxEventCallbackTypeDef)(struct __UART_HandleTypeDef *huart
   *            @arg @ref UART_SENDBREAK_REQUEST Send Break Request
   *            @arg @ref UART_MUTE_MODE_REQUEST Mute Mode Request
   *            @arg @ref UART_RXDATA_FLUSH_REQUEST Receive Data flush Request
+#if defined(USART_RQR_TXFRQ)
   *            @arg @ref UART_TXDATA_FLUSH_REQUEST Transmit data flush Request
+#endif
   * @retval None
   */
 #define __HAL_UART_SEND_REQ(__HANDLE__, __REQ__) ((__HANDLE__)->Instance->RQR |= (uint16_t)(__REQ__))
@@ -1070,10 +1136,10 @@ typedef  void (*pUART_RxEventCallbackTypeDef)(struct __UART_HandleTypeDef *huart
   * @param  __HANDLE__ specifies the UART Handle.
   * @retval None
   */
-#define __HAL_UART_HWCONTROL_CTS_ENABLE(__HANDLE__)        \
-  do{                                                      \
-    SET_BIT((__HANDLE__)->Instance->CR3, USART_CR3_CTSE);  \
-    (__HANDLE__)->Init.HwFlowCtl |= USART_CR3_CTSE;        \
+#define __HAL_UART_HWCONTROL_CTS_ENABLE(__HANDLE__)               \
+  do{                                                             \
+    ATOMIC_SET_BIT((__HANDLE__)->Instance->CR3, USART_CR3_CTSE);  \
+    (__HANDLE__)->Init.HwFlowCtl |= USART_CR3_CTSE;               \
   } while(0U)
 
 /** @brief  Disable CTS flow control.
@@ -1089,10 +1155,10 @@ typedef  void (*pUART_RxEventCallbackTypeDef)(struct __UART_HandleTypeDef *huart
   * @param  __HANDLE__ specifies the UART Handle.
   * @retval None
   */
-#define __HAL_UART_HWCONTROL_CTS_DISABLE(__HANDLE__)        \
-  do{                                                       \
-    CLEAR_BIT((__HANDLE__)->Instance->CR3, USART_CR3_CTSE); \
-    (__HANDLE__)->Init.HwFlowCtl &= ~(USART_CR3_CTSE);      \
+#define __HAL_UART_HWCONTROL_CTS_DISABLE(__HANDLE__)               \
+  do{                                                              \
+    ATOMIC_CLEAR_BIT((__HANDLE__)->Instance->CR3, USART_CR3_CTSE); \
+    (__HANDLE__)->Init.HwFlowCtl &= ~(USART_CR3_CTSE);             \
   } while(0U)
 
 /** @brief  Enable RTS flow control.
@@ -1108,10 +1174,10 @@ typedef  void (*pUART_RxEventCallbackTypeDef)(struct __UART_HandleTypeDef *huart
   * @param  __HANDLE__ specifies the UART Handle.
   * @retval None
   */
-#define __HAL_UART_HWCONTROL_RTS_ENABLE(__HANDLE__)       \
-  do{                                                     \
-    SET_BIT((__HANDLE__)->Instance->CR3, USART_CR3_RTSE); \
-    (__HANDLE__)->Init.HwFlowCtl |= USART_CR3_RTSE;       \
+#define __HAL_UART_HWCONTROL_RTS_ENABLE(__HANDLE__)              \
+  do{                                                            \
+    ATOMIC_SET_BIT((__HANDLE__)->Instance->CR3, USART_CR3_RTSE); \
+    (__HANDLE__)->Init.HwFlowCtl |= USART_CR3_RTSE;              \
   } while(0U)
 
 /** @brief  Disable RTS flow control.
@@ -1127,10 +1193,10 @@ typedef  void (*pUART_RxEventCallbackTypeDef)(struct __UART_HandleTypeDef *huart
   * @param  __HANDLE__ specifies the UART Handle.
   * @retval None
   */
-#define __HAL_UART_HWCONTROL_RTS_DISABLE(__HANDLE__)       \
-  do{                                                      \
-    CLEAR_BIT((__HANDLE__)->Instance->CR3, USART_CR3_RTSE);\
-    (__HANDLE__)->Init.HwFlowCtl &= ~(USART_CR3_RTSE);     \
+#define __HAL_UART_HWCONTROL_RTS_DISABLE(__HANDLE__)              \
+  do{                                                             \
+    ATOMIC_CLEAR_BIT((__HANDLE__)->Instance->CR3, USART_CR3_RTSE);\
+    (__HANDLE__)->Init.HwFlowCtl &= ~(USART_CR3_RTSE);            \
   } while(0U)
 /**
   * @}
@@ -1317,11 +1383,18 @@ typedef  void (*pUART_RxEventCallbackTypeDef)(struct __UART_HandleTypeDef *huart
   * @param __PARAM__ UART request parameter.
   * @retval SET (__PARAM__ is valid) or RESET (__PARAM__ is invalid)
   */
+#if defined(USART_RQR_TXFRQ)
 #define IS_UART_REQUEST_PARAMETER(__PARAM__) (((__PARAM__) == UART_AUTOBAUD_REQUEST)     || \
                                               ((__PARAM__) == UART_SENDBREAK_REQUEST)    || \
                                               ((__PARAM__) == UART_MUTE_MODE_REQUEST)    || \
                                               ((__PARAM__) == UART_RXDATA_FLUSH_REQUEST) || \
                                               ((__PARAM__) == UART_TXDATA_FLUSH_REQUEST))
+#else
+#define IS_UART_REQUEST_PARAMETER(__PARAM__) (((__PARAM__) == UART_AUTOBAUD_REQUEST)     || \
+                                              ((__PARAM__) == UART_SENDBREAK_REQUEST)    || \
+                                              ((__PARAM__) == UART_MUTE_MODE_REQUEST)    || \
+                                              ((__PARAM__) == UART_RXDATA_FLUSH_REQUEST))
+#endif /* USART_RQR_TXFRQ */
 
 /**
   * @brief Ensure that UART advanced features initialization is valid.
@@ -1427,9 +1500,14 @@ typedef  void (*pUART_RxEventCallbackTypeDef)(struct __UART_HandleTypeDef *huart
   * @param __WAKE__ UART wake-up selection.
   * @retval SET (__WAKE__ is valid) or RESET (__WAKE__ is invalid)
   */
+#if defined(USART_CR3_WUFIE)
 #define IS_UART_WAKEUP_SELECTION(__WAKE__) (((__WAKE__) == UART_WAKEUP_ON_ADDRESS)           || \
                                             ((__WAKE__) == UART_WAKEUP_ON_STARTBIT)          || \
                                             ((__WAKE__) == UART_WAKEUP_ON_READDATA_NONEMPTY))
+#else
+#define IS_UART_WAKEUP_SELECTION(__WAKE__) (((__WAKE__) == UART_WAKEUP_ON_ADDRESS)           || \
+                                            ((__WAKE__) == UART_WAKEUP_ON_READDATA_NONEMPTY))
+#endif /* USART_CR3_WUFIE */
 #endif /* USART_CR1_UESM */
 
 /**
@@ -1447,7 +1525,6 @@ typedef  void (*pUART_RxEventCallbackTypeDef)(struct __UART_HandleTypeDef *huart
 
 /* Include UART HAL Extended module */
 #include "stm32f0xx_hal_uart_ex.h"
-
 
 /* Exported functions --------------------------------------------------------*/
 /** @addtogroup UART_Exported_Functions UART Exported Functions
@@ -1488,11 +1565,11 @@ HAL_StatusTypeDef HAL_UART_UnRegisterRxEventCallback(UART_HandleTypeDef *huart);
   */
 
 /* IO operation functions *****************************************************/
-HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
 HAL_StatusTypeDef HAL_UART_Receive(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-HAL_StatusTypeDef HAL_UART_Transmit_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+HAL_StatusTypeDef HAL_UART_Transmit_IT(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size);
 HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
-HAL_StatusTypeDef HAL_UART_Transmit_DMA(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+HAL_StatusTypeDef HAL_UART_Transmit_DMA(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size);
 HAL_StatusTypeDef HAL_UART_Receive_DMA(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
 HAL_StatusTypeDef HAL_UART_DMAPause(UART_HandleTypeDef *huart);
 HAL_StatusTypeDef HAL_UART_DMAResume(UART_HandleTypeDef *huart);
@@ -1548,8 +1625,8 @@ HAL_StatusTypeDef HAL_HalfDuplex_EnableReceiver(UART_HandleTypeDef *huart);
   */
 
 /* Peripheral State and Errors functions  **************************************************/
-HAL_UART_StateTypeDef HAL_UART_GetState(UART_HandleTypeDef *huart);
-uint32_t              HAL_UART_GetError(UART_HandleTypeDef *huart);
+HAL_UART_StateTypeDef HAL_UART_GetState(const UART_HandleTypeDef *huart);
+uint32_t              HAL_UART_GetError(const UART_HandleTypeDef *huart);
 
 /**
   * @}
@@ -1578,6 +1655,7 @@ HAL_StatusTypeDef UART_Start_Receive_DMA(UART_HandleTypeDef *huart, uint8_t *pDa
   * @}
   */
 
+/* Private variables -----------------------------------------------------------*/
 /**
   * @}
   */
@@ -1592,4 +1670,3 @@ HAL_StatusTypeDef UART_Start_Receive_DMA(UART_HandleTypeDef *huart, uint8_t *pDa
 
 #endif /* STM32F0xx_HAL_UART_H */
 
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
