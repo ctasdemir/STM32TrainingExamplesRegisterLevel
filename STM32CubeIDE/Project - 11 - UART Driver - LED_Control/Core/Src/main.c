@@ -25,6 +25,7 @@
 #include "led_driver.h"
 #include "button_driver.h"
 #include "uart_driver.h"
+#include <stdio.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -45,7 +46,8 @@
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
-
+int32_t UART_get_command(void);
+void send_time_string(void);
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -233,6 +235,45 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+
+int32_t UART_get_command(void)
+{
+	int32_t blink_speed = 0;
+	int ch = 0;
+	ch = UART_read_byte();
+	if(ch != -1)
+	{
+		 switch(ch)
+		 {
+			 case '1':
+				 blink_speed = 1;
+				 break;
+			 case '2':
+				 blink_speed = 2;
+				 break;
+			 case '3':
+				 blink_speed = 3;
+				 break;
+			 default:
+				 blink_speed = 1;
+				 break;
+		 }
+		 return blink_speed;
+	}
+
+	return 0;
+}
+
+void send_time_string(void)
+{
+	uint32_t n = 0;
+	static uint32_t time;
+	time++;
+
+	n = UART_bytes_to_read();
+	printf("Zaman: %u Gelen_veri:%u Buton Durum: %u\n\r",(unsigned int)time,(unsigned int)n, (unsigned int)button_get_state());
+}
 
 /* USER CODE END 4 */
 
