@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>Basic Timer - Periodic Signal</name>
+	<name>Project - 12 - Basic Timer - Periodic Signal</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -35,12 +35,18 @@
 		<link>
 			<name>Core/Src/led_driver.c</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/User%20drivers/src/led_driver.c</locationURI>
+			<locationURI>copy_PARENT/User%20drivers/src/led_driver.c</locationURI>
 		</link>
 		<link>
 			<name>Core/Src/timer6_driver.c</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/User%20Drivers/Src/timer6_driver.c</locationURI>
+			<locationURI>copy_PARENT/User%20Drivers/Src/timer6_driver.c</locationURI>
 		</link>
 	</linkedResources>
+	<variableList>
+		<variable>
+			<name>copy_PARENT</name>
+			<value>$%7BPARENT-1-PROJECT_LOC%7D/STM32TrainingExamplesRegisterLevel/STM32CubeIDE</value>
+		</variable>
+	</variableList>
 </projectDescription>
