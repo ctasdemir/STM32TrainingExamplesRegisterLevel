@@ -30,4 +30,16 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>Core/Src/pwm_driver.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/User%20Drivers/Src/pwm_driver.c</locationURI>
+		</link>
+		<link>
+			<name>Core/Src/uart_driver.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/User%20Drivers/Src/uart_driver.c</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>

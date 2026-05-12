@@ -236,7 +236,29 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+static void pwm_sweep(void)
+{
+	int32_t sweep = 0 ;
+	for(sweep = 0; sweep < 100; sweep++)
+	{
+		pwm_set_duty_cycle(sweep,CHANNEL1);
+		pwm_set_duty_cycle(100 - sweep,CHANNEL2);
+		pwm_set_duty_cycle(sweep,CHANNEL3);
+		pwm_set_duty_cycle(100 - sweep,CHANNEL4);
 
+		HAL_Delay(5);
+	}
+
+	for(sweep = 100; sweep > 0; sweep--)
+	{
+		pwm_set_duty_cycle(sweep, CHANNEL1);
+		pwm_set_duty_cycle(100 - sweep, CHANNEL2);
+		pwm_set_duty_cycle(sweep, CHANNEL3);
+		pwm_set_duty_cycle(100 - sweep,CHANNEL4);
+		HAL_Delay(5);
+	}
+
+}
 /* USER CODE END 4 */
 
 /**

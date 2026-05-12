@@ -77,6 +77,8 @@ void servo_set_duty_cycle(uint32_t duty, Channels_e channel)
 	}
 }
 
+
+
 static void servo_pin_configure()
 {
 	GPIO_InitTypeDef GPIO_InitStruct;

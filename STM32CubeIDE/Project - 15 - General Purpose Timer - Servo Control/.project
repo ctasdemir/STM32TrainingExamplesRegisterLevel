@@ -30,4 +30,16 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>Core/Src/servo_driver.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/User%20Drivers/Src/servo_driver.c</locationURI>
+		</link>
+		<link>
+			<name>Core/Src/uart_driver.c</name>
+			<type>1</type>
+			<locationURI>$%7BPARENT-1-PROJECT_LOC%7D/User%20Drivers/Src/uart_driver.c</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>
