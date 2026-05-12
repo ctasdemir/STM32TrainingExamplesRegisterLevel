@@ -22,12 +22,15 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "led_driver.h"
+#include "uart_driver.h"
+#include <string.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+extern volatile uint8_t data_buffer[10];
+extern volatile uint32_t data_flag;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/

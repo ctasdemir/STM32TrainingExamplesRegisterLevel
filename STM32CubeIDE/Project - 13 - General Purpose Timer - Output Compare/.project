@@ -30,4 +30,11 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>Core/Src/timer14_driver.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/User%20Drivers/Src/timer14_driver.c</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>
