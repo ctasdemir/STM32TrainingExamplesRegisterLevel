@@ -44,7 +44,7 @@
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
-void send_time_string();
+static int32_t prev_btn_state = BUTTON_OFF;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -102,6 +102,23 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    /* Echo all received bytes back */
+    while (UART_bytes_to_read() > 0)
+    {
+      int32_t b = UART_read_byte();
+      if (b != -1)
+        UART_send_byte((uint8_t)b);
+    }
+
+    /* Send message on button press (edge detect) */
+    int32_t btn = button_get_state();
+    if (btn == BUTTON_ON && prev_btn_state == BUTTON_OFF)
+    {
+      uint8_t msg[] = "Button Pressed!\r\n";
+      UART_send_byte_array(msg, sizeof(msg) - 1);
+    }
+    prev_btn_state = btn;
+    HAL_Delay(10);
   }
   /* USER CODE END 3 */
 }

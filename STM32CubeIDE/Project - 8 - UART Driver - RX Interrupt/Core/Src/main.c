@@ -100,6 +100,11 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    int32_t byte = UART_read_byte();
+    if (byte != -1)
+    {
+      UART_send_byte((uint8_t)byte);
+    }
   }
   /* USER CODE END 3 */
 }
